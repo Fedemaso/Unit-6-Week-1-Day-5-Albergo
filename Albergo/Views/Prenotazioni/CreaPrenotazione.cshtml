@@ -1,0 +1,102 @@
+﻿@model Albergo.Models.Prenotazione
+
+<h2>Nuova Prenotazione</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ClienteID, new { @class = "control-label col-sm-2" })
+        <div class="col-sm-10">
+            @Html.DropDownListFor(model => model.ClienteID, (IEnumerable<SelectListItem>)ViewBag.Clienti, "Seleziona un cliente", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ClienteID)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.CameraID, new { @class = "control-label col-sm-2" })
+        <div class="col-sm-10">
+            @Html.DropDownListFor(model => model.CameraID, (IEnumerable<SelectListItem>)ViewBag.Camere, "Seleziona una camera", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.CameraID)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.DataPrenotazione, new { @class = "control-label col-sm-2" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.DataPrenotazione, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(m => m.DataPrenotazione)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NumeroProgressivo, new { @class = "control-label col-sm-2" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.NumeroProgressivo, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.NumeroProgressivo)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Anno, new { @class = "control-label col-sm-2" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.Anno, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Anno)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.PeriodoDal, new { @class = "control-label col-sm-2" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.PeriodoDal, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(m => m.PeriodoDal)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.PeriodoAl, new { @class = "control-label col-sm-2" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.PeriodoAl, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(m => m.PeriodoAl)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Caparra, new { @class = "control-label col-sm-2" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.Caparra, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Caparra)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Tariffa, new { @class = "control-label col-sm-2" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.Tariffa, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Tariffa)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.TipologiaPernottamento, new { @class = "control-label col-sm-2" })
+        <div class="col-sm-10">
+            @Html.DropDownListFor(m => m.TipologiaPernottamento, (SelectList)ViewBag.TipologiePernottamento, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.TipologiaPernottamento)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Dettagli, new { @class = "control-label col-sm-2" })
+        <div class="col-sm-10">
+            @Html.TextAreaFor(m => m.Dettagli, new { @class = "form-control", rows = "4" })
+            @Html.ValidationMessageFor(m => m.Dettagli)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" value="Salva Prenotazione" class="btn btn-primary" />
+        </div>
+    </div>
+}

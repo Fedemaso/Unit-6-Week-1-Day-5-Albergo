@@ -1,0 +1,37 @@
+﻿@*@model Albergo.Models.Checkout
+
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Checkout</h2>
+
+    <div>
+        <p><strong>Numero Stanza:</strong> @Model.NumeroStanza</p>
+        <p><strong>Periodo Prenotazione:</strong> @Model.PeriodoDal.ToString("dd/MM/yyyy") - @Model.PeriodoAl.ToString("dd/MM/yyyy")</p>
+        <p><strong>Tariffa Applicata:</strong> @Model.Tariffa</p>
+        <p><strong>Caparra Versata:</strong> @Model.Caparra</p>
+    </div>
+
+    <h3 class="mt-4">Servizi Aggiuntivi:</h3>
+    <ul>
+        @foreach (var servizio in Model.ServiziAggiuntivi)
+        {
+            <li>@servizio.Descrizione - Costo: @servizio.Costo</li>
+        }
+    </ul>
+
+    <h4 class="mt-4">Importo Totale da Salare:</h4>
+    <p><strong>@Model.ImportoTotale</strong></p>
+
+    <button class="btn btn-primary" onclick="StampaDettaglio()">Stampa Dettaglio</button>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function StampaDettaglio() {
+        // Implementa qui la logica per la stampa del dettaglio della prenotazione
+        // Ad esempio, puoi utilizzare window.print() per la stampa.
+    }
+</script>*@

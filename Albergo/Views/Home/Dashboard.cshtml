@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Dashboard</h2>
+
+    <div class="card mb-4">
+        <div class="card-header">Gestione Prenotazioni</div>
+        <div class="card-body">
+            <a href="@Url.Action("CreaPrenotazione", "Prenotazioni")" class="btn btn-primary mr-2 m-2">Nuova Prenotazione</a>
+            <a href="@Url.Action("ListaPrenotazioni", "Prenotazioni")" class="btn btn-secondary mr-2 m-2">Visualizza Prenotazioni</a>
+            <a href="@Url.Action("Checkout", "Prenotazioni")" class="btn btn-secondary mr-2 m-2">Esegui Checkout</a>
+            <a href="@Url.Action("RicercaPrenotazioni", "Prenotazioni")" class="btn btn-secondary mr-2 m-2">Ricerca Prenotazioni per Codice Fiscale</a>
+            <a href="@Url.Action("PrenotazioniPensioneCompleta", "Prenotazioni")" class="btn btn-secondary m-2">Prenotazioni Pensione Completa</a>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">Clienti</div>
+        <div class="card-body">
+            <a href="@Url.Action("AggiungiCliente", "Clienti")" class="btn btn-primary mr-2 m-2">Aggiungi Cliente</a>
+            <a href="@Url.Action("ListaClienti", "Clienti")" class="btn btn-secondary m-2">Visualizza Clienti</a>
+        </div>
+    </div>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="card">
+            <div class="card-header">Funzioni Admin</div>
+            <div class="card-body">
+                <a href="@Url.Action("RegistraDipendente")" class="btn btn-warning">Registra Nuovo Dipendente</a>
+            </div>
+        </div>
+    }
+</div>

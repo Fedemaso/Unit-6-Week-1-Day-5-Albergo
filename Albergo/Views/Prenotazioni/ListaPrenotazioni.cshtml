@@ -1,0 +1,61 @@
+﻿@model List<Albergo.Models.PrenotazioneViewModel>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Prenotazione ID</th>
+            <th>Cliente</th>
+            <th>Numero Camera</th>
+            <th>Data Prenotazione</th>
+            <th>Numero Progressivo</th>
+            <th>Anno</th>
+            <th>Periodo Dal</th>
+            <th>Periodo Al</th>
+            <th>Caparra</th>
+            <th>Tariffa</th>
+            <th>Tipologia Pernottamento</th>
+            <th>Dettagli</th>
+            <th>Servizi Aggiuntivi</th>
+            <th>Azioni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.PrenotazioneID</td>
+                <td>@item.ClienteNome</td>
+                <td>@item.NumeroCamera</td>
+                <td>@item.DataPrenotazione.ToShortDateString()</td>
+                <td>@item.NumeroProgressivo</td>
+                <td>@item.Anno</td>
+                <td>@item.PeriodoDal.ToShortDateString()</td>
+                <td>@item.PeriodoAl.ToShortDateString()</td>
+                <td>@item.Caparra</td>
+                <td>@item.Tariffa</td>
+                <td>@item.TipologiaPernottamento</td>
+                <td>@item.Dettagli</td>
+                <td>
+                    <ul>
+                        @foreach (var servizio in item.ServiziAggiuntivi)
+                        {
+                            <li>@servizio.TipoServizio.Descrizione - Quantità: @servizio.Quantita - Data: @servizio.Data.ToShortDateString()</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <a href="@Url.Action("ModificaPrenotazione", new { id = item.PrenotazioneID })" class="btn btn-warning btn-sm">Modifica</a>
+                    <a href="@Url.Action("AggiungiServizi", "ServiziAggiuntivi", new { id = item.PrenotazioneID })" class="btn btn-info btn-sm">Aggiungi Servizi</a>
+                    <a href="@Url.Action("Checkout", "Prenotazioni", new { id = item.PrenotazioneID })" class="btn btn-primary">Checkout</a>
+
+                    @using (Html.BeginForm("EliminaPrenotazione", "Prenotazioni", new { id = item.PrenotazioneID }, FormMethod.Post))
+                    {
+                        <input type="submit" value="Elimina" class="btn btn-danger btn-sm" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

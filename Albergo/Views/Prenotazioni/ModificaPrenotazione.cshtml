@@ -1,0 +1,67 @@
+﻿@model Albergo.Models.Prenotazione
+
+<h2 class="mb-4">Modifica Prenotazione</h2>
+
+@using (Html.BeginForm("ModificaPrenotazione", "Prenotazioni", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+{
+    @Html.HiddenFor(m => m.PrenotazioneID)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ClienteID, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.ClienteID, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ClienteID, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CameraID, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.CameraID, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CameraID, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.DataPrenotazione, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.DataPrenotazione, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+        @Html.ValidationMessageFor(m => m.DataPrenotazione, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.NumeroProgressivo, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.NumeroProgressivo, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NumeroProgressivo, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Anno, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.Anno, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Anno, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PeriodoDal, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.PeriodoDal, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+        @Html.ValidationMessageFor(m => m.PeriodoDal, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PeriodoAl, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.PeriodoAl, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+        @Html.ValidationMessageFor(m => m.PeriodoAl, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Caparra, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.Caparra, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Caparra, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Tariffa, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.Tariffa, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Tariffa, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.TipologiaPernottamento, new { @class = "control-label" })
+        @Html.DropDownListFor(m => m.TipologiaPernottamento, (SelectList)ViewBag.TipologiePernottamento, "Seleziona una tipologia di pernottamento", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.TipologiaPernottamento, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Dettagli, new { @class = "control-label" })
+        @Html.TextAreaFor(m => m.Dettagli, new { @class = "form-control", rows = "4" })
+        @Html.ValidationMessageFor(m => m.Dettagli, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Salva Modifiche" class="btn btn-primary" />
+    </div>
+}

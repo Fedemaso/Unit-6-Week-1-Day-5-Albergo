@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Ricerca Prenotazioni";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Ricerca Prenotazioni</h2>
+
+    <div class="mb-3">
+        <label for="codiceFiscale" class="form-label">Codice Fiscale:</label>
+        <input type="text" id="codiceFiscale" class="form-control" />
+    </div>
+
+    <button class="btn btn-primary mb-3" onclick="ricercaPrenotazione()">Ricerca</button>
+
+    <div id="risultati" class="mt-3"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function ricercaPrenotazione() {
+        var codiceFiscale = $('#codiceFiscale').val();
+
+        $.ajax({
+            type: "POST",
+            url: "/RicercaPrenotazioni/RicercaCliente",
+            data: { codiceFiscale: codiceFiscale },
+            success: function (response) {
+                if (response) {
+                    if (response.error) {
+                        $('#risultati').html('<p class="text-danger">Errore: ' + response.error + '</p>');
+                    } else {
+                        var html = '<div class="list-group">';
+                        html += '<div class="list-group-item"><strong>Nome Cliente:</strong> ' + response.clienteNome + '</div>';
+                        html += '<div class="list-group-item"><strong>Data Prenotazione:</strong> ' + response.dataPrenotazione + '</div>';
+                        html += '<div class="list-group-item"><strong>Numero Camera:</strong> ' + response.numeroCamera + '</div>';
+                        html += '<div class="list-group-item"><strong>Numero Progressivo:</strong> ' + response.numeroProgressivo + '</div>';
+                        html += '<div class="list-group-item"><strong>Anno:</strong> ' + response.anno + '</div>';
+                        html += '<div class="list-group-item"><strong>Periodo Dal:</strong> ' + response.periodoDal + '</div>';
+                        html += '<div class="list-group-item"><strong>Periodo Al:</strong> ' + response.periodoAl + '</div>';
+                        html += '<div class="list-group-item"><strong>Caparra:</strong> ' + response.caparra + '</div>';
+                        html += '<div class="list-group-item"><strong>Tariffa:</strong> ' + response.tariffa + '</div>';
+                        html += '<div class="list-group-item"><strong>Tipologia Pernottamento:</strong> ' + response.tipologiaPernottamento + '</div>';
+                        html += '<div class="list-group-item"><strong>Dettagli:</strong> ' + response.dettagli + '</div>';
+                        html += '</div>';
+                        $('#risultati').html(html);
+                    }
+                } else {
+                    $('#risultati').html('<p class="text-warning">Nessuna prenotazione trovata per questo codice fiscale.</p>');
+                }
+            },
+            error: function (xhr, status, error) {
+                $('#risultati').html('<p class="text-danger">Errore nella chiamata AJAX. Stato: ' + status + '. Errore: ' + error + '</p>');
+            }
+        });
+    }
+</script>
+
+
+

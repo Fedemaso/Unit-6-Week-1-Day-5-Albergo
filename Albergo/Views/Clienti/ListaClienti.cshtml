@@ -1,0 +1,40 @@
+﻿@model List<Albergo.Models.Cliente>
+
+<h2>Lista Clienti</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Codice Fiscale</th>
+            <th>Cognome</th>
+            <th>Nome</th>
+            <th>Città</th>
+            <th>Provincia</th>
+            <th>Email</th>
+            <th>Telefono</th>
+            <th>Cellulare</th>
+            <th>Azioni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cliente in Model)
+        {
+            <tr>
+                <td>@cliente.ClienteID</td>
+                <td>@cliente.CodiceFiscale</td>
+                <td>@cliente.Cognome</td>
+                <td>@cliente.Nome</td>
+                <td>@cliente.Citta</td>
+                <td>@cliente.Provincia</td>
+                <td>@cliente.Email</td>
+                <td>@cliente.Telefono</td>
+                <td>@cliente.Cellulare</td>
+                <td>
+                    @Html.ActionLink("Modifica", "ModificaCliente", new { id = cliente.ClienteID }, new { @class = "btn btn-warning btn-sm" })
+                    @Html.ActionLink("Elimina", "EliminaCliente", new { id = cliente.ClienteID }, new { @class = "btn btn-danger btn-sm", onclick = "return confirm('Sei sicuro di voler eliminare questo cliente?');" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

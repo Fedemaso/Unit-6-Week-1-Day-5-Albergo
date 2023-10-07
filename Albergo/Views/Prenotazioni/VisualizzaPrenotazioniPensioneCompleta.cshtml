@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Prenotazioni Pensione Completa";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Prenotazioni con Pensione Completa</h2>
+
+    <button class="btn btn-primary mb-3" onclick="getPrenotazioniPensioneCompleta()">Mostra Prenotazioni</button>
+
+    <div id="prenotazioniList" class="mt-3"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function getPrenotazioniPensioneCompleta() {
+        $.ajax({
+            type: "GET",
+            url: "/Prenotazioni/GetPrenotazioniPensioneCompleta",
+            success: function (data) {
+                var html = '<div class="list-group">';
+                for (var i = 0; i < data.length; i++) {
+                    html += '<div class="list-group-item">';
+                    html += '<h5 class="mb-1">Prenotazione ID: ' + data[i].PrenotazioneID + '</h5>';
+                    html += '<p class="mb-1">Cliente ID: ' + data[i].ClienteID + '</p>';
+                    html += '<p class="mb-1">Camera ID: ' + data[i].CameraID + '</p>';
+                    html += '<p class="mb-1">Data Prenotazione: ' + data[i].DataPrenotazione + '</p>';
+                    html += '<p class="mb-1">Numero Progressivo: ' + data[i].NumeroProgressivo + '</p>';
+                    html += '<p class="mb-1">Anno: ' + data[i].Anno + '</p>';
+                    html += '<p class="mb-1">Periodo Dal: ' + data[i].PeriodoDal + '</p>';
+                    html += '<p class="mb-1">Periodo Al: ' + data[i].PeriodoAl + '</p>';
+                    html += '<p class="mb-1">Caparra: ' + data[i].Caparra + '</p>';
+                    html += '<p class="mb-1">Tariffa: ' + data[i].Tariffa + '</p>';
+                    html += '<p class="mb-1">Tipologia Pernottamento: ' + data[i].TipologiaPernottamento + '</p>';
+                    html += '<p class="mb-1">Dettagli: ' + data[i].Dettagli + '</p>';
+                    html += '</div>';
+                }
+                html += '</div>';
+                $('#prenotazioniList').html(html);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+</script>
+
